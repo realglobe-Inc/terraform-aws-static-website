@@ -1,7 +1,16 @@
-variable "service_name" {}
-variable "aws_profile" {}
+variable "service_name" {
+  description = "tagged with service name"
+}
+variable "aws_profile" {
+  description = "aws profile name"
+}
 variable "domain_names" {
+  description = "domain names"
   type = list(string)
 }
-variable "route53_zone_id" {}
-variable "s3_bucket_name" {}
+variable "route53_zone_id" {
+  description = "Route53 Zone ID"
+}
+variable "s3_bucket_name" {
+  description = "S3 bucket name"
+}
