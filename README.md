@@ -12,7 +12,8 @@ Provision a static website hosted through S3 + CloudFront in AWS
 
 ```hcl
 module "website" {
-  source = "git::git@github.com:realglobe-Inc/terraform-aws-static-website.git"
+  source = "realglobe-Inc/static-website/aws"
+  version = "1.0.0"
   service_name = "your-service-name"
   aws_profile = "aws-profile-name"
   domain_names = list("foo.example.com", "bar.example.com")
