@@ -22,15 +22,18 @@ module "website" {
 }
 ```
 
+Create or switch workspace and apply.
+
+```bash
+$ terraform init
+$ terraform workspace new development
+$ terraform apply
+```
+
 Upload assets to S3.
 
 ```bash
 $ aws s3 sync path/to/website/assets s3://your-s3-web-bucket/development/ --profile aws-profile-name
 ```
 
-Create or switch workspace and apply.
-
-```bash
-$ terraform workspace new development
-$ terraform apply
-```
+Then, access to your web site https://foo.example.com.
