@@ -32,10 +32,15 @@ resource "aws_cloudfront_distribution" "web_dist" {
     response_page_path = "/index.html"
   }
 
-  logging_config {
-    include_cookies = true
-    bucket          = aws_s3_bucket.hosting.bucket_domain_name
-    prefix          = "cf-logs-${terraform.workspace}"
+  # ifが使えないのでdynamicを使う
+  dynamic logging_config {
+    for_each = var.save_access_log ? { "dummy": "dummy" } : {}
+
+    content {
+      include_cookies = true
+      bucket          = aws_s3_bucket.hosting.bucket_domain_name
+      prefix          = "cf-logs-${terraform.workspace}"
+    }
   }
 
   default_cache_behavior {

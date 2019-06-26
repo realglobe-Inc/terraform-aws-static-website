@@ -14,3 +14,8 @@ variable "route53_zone_id" {
 variable "s3_bucket_name" {
   description = "S3 bucket name"
 }
+variable "save_access_log" {
+  description = "whether save cloudfront access log to S3"
+  type = bool
+  default = false
+}
