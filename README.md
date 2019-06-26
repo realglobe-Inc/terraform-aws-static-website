@@ -19,6 +19,15 @@ module "website" {
   domain_names = list("foo.example.com", "bar.example.com")
   route53_zone_id = "ZXXXXXXXXXXXXX"
   s3_bucket_name = "your-s3-web-bucket"
+  save_access_log = true  # optional
+}
+```
+
+Output CroudFront cache invalidation command.
+
+```hcl
+output "cache_invalidation_command" {
+  value = module.website.cache_invalidation_command
 }
 ```
 
@@ -37,3 +46,10 @@ $ aws s3 sync path/to/website/assets s3://your-s3-web-bucket/development/ --prof
 ```
 
 Then, access to your web site https://foo.example.com.
+
+If responce is cached, invalidate CloudFront edge caches.
+
+```bash
+$ terraform output cache_invalidation_command
+# Copy and paste printed command, overwrite paths and run.
+```
