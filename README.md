@@ -13,12 +13,13 @@ Provision a static website hosted through S3 + CloudFront in AWS
 ```hcl
 module "website" {
   source = "realglobe-Inc/static-website/aws"
-  version = "1.0.0"
+  version = "2.0.0"
   service_name = "your-service-name"
   aws_profile = "aws-profile-name"
   domain_names = list("foo.example.com", "bar.example.com")
   route53_zone_id = "ZXXXXXXXXXXXXX"
   s3_bucket_name = "your-s3-web-bucket"
+  cloudfront_origin_path = "/dev" # optional
   save_access_log = true  # optional
 }
 ```
