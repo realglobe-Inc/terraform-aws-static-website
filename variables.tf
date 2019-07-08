@@ -8,6 +8,10 @@ variable "domain_names" {
   description = "domain names"
   type = list(string)
 }
+variable "cloudfront_origin_path" {
+  default = "/"
+  description = "Origin path of CloudFront"
+}
 variable "route53_zone_id" {
   description = "Route53 Zone ID"
 }
