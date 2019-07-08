@@ -14,3 +14,7 @@ variable "route53_zone_id" {
 variable "s3_bucket_name" {
   description = "S3 bucket name"
 }
+variable "cloudfront_origin_path" {
+  default = "/"
+  description = "Origin path of CloudFront"
+}
