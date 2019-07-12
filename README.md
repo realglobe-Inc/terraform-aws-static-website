@@ -24,7 +24,7 @@ module "website" {
 }
 ```
 
-Output CroudFront cache invalidation command.
+Output CloudFront cache invalidation command.
 
 ```hcl
 output "cache_invalidation_command" {
