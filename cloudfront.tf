@@ -60,6 +60,14 @@ resource "aws_cloudfront_distribution" "web_dist" {
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
+
+    dynamic "lambda_function_association" {
+      for_each = var.lambda_function_associations
+      content {
+        event_type = lambda_function_association.key
+        lambda_arn = lambda_function_association.value
+      }
+    }
   }
 
   restrictions {

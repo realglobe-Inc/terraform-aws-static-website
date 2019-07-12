@@ -21,6 +21,7 @@ module "website" {
   s3_bucket_name = "your-s3-web-bucket"
   cloudfront_origin_path = "/dev" # optional
   save_access_log = true  # optional
+  lambda_function_associations = { "viewer-request": "arn:..." }  # optional
 }
 ```
 

@@ -23,3 +23,8 @@ variable "save_access_log" {
   type = bool
   default = false
 }
+variable "lambda_function_associations" {
+  description = "CloudFront Lambda function associations. key is CloudFront event type and value is lambda function ARN with version"
+  type = map(string)
+  default = {}
+}
