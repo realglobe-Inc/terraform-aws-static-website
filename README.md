@@ -21,10 +21,11 @@ module "website" {
   s3_bucket_name = "your-s3-web-bucket"
   cloudfront_origin_path = "/dev" # optional
   save_access_log = true  # optional
+  lambda_function_associations = { "viewer-request": "arn:..." }  # optional
 }
 ```
 
-Output CroudFront cache invalidation command.
+Output CloudFront cache invalidation command.
 
 ```hcl
 output "cache_invalidation_command" {
