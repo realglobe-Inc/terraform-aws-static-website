@@ -9,7 +9,7 @@ variable "domain_names" {
   type = list(string)
 }
 variable "cloudfront_origin_path" {
-  default = "/"
+  default = ""
   description = "Origin path of CloudFront"
 }
 variable "route53_zone_id" {
