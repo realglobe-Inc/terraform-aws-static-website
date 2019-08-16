@@ -28,3 +28,8 @@ variable "lambda_function_associations" {
   type = map(string)
   default = {}
 }
+variable "cors_allowed_origins" {
+  description = "CORS allowed origins"
+  type = list(string)
+  default = []
+}
