@@ -6,7 +6,9 @@
 
 # terraform-aws-static-website
 
-Provision a static website hosted through S3 + CloudFront in AWS
+Provision a static website hosted through S3 + CloudFront in AWS.
+
+Terraform Registry at https://registry.terraform.io/modules/realglobe-Inc/static-website/aws/.
 
 ## Usage
 
@@ -55,3 +57,7 @@ If responce is cached, invalidate CloudFront edge caches.
 $ terraform output cache_invalidation_command
 # Copy and paste printed command, overwrite paths and run.
 ```
+
+## Development
+
+To publish new version in Terraform Registry, just create new release in [releases](https://github.com/realglobe-Inc/terraform-aws-static-website/releases).
