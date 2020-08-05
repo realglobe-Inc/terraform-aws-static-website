@@ -13,9 +13,9 @@ resource "aws_route53_record" "www" {
 
 resource "aws_route53_record" "cert_validation" {
   count   = length(var.domain_names)
-  name    = lookup(aws_acm_certificate.cert.domain_validation_options[count.index], "resource_record_name")
-  type    = lookup(aws_acm_certificate.cert.domain_validation_options[count.index], "resource_record_type")
-  records = [lookup(aws_acm_certificate.cert.domain_validation_options[count.index], "resource_record_value")]
+  name    = lookup(tolist(aws_acm_certificate.cert.domain_validation_options)[count.index], "resource_record_name")
+  type    = lookup(tolist(aws_acm_certificate.cert.domain_validation_options)[count.index], "resource_record_type")
+  records = [lookup(tolist(aws_acm_certificate.cert.domain_validation_options)[count.index], "resource_record_value")]
   zone_id = var.route53_zone_id
   ttl     = 60
 
