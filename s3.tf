@@ -20,11 +20,17 @@ resource "aws_s3_bucket" "hosting" {
   bucket = var.s3_bucket_name
   policy = data.aws_iam_policy_document.bucket_policy.json
 
-  cors_rule {
-    allowed_headers = ["*"]
-    allowed_methods = ["GET"]
-    allowed_origins = var.cors_allowed_origins
-    max_age_seconds = 3000
+  dynamic "cors_rule" {
+    for_each = [for origin in var.cors_allowed_origins: {
+      allowed_origin = origin
+    }]
+
+    content {
+      allowed_headers = ["*"]
+      allowed_methods = ["GET"]
+      allowed_origins = [cors_rule.value.allowed_origin]
+      max_age_seconds = 3000
+    }
   }
 
   versioning {
