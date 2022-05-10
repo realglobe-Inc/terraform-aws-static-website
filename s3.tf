@@ -1,6 +1,6 @@
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
-    sid = "AllowCloudFront"
+    sid    = "AllowCloudFront"
     effect = "Allow"
     actions = [
       "s3:GetObject"
@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "bucket_policy" {
     ]
 
     principals {
-      type = "AWS"
+      type        = "AWS"
       identifiers = ["arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.origin_access_identity.id}"]
     }
   }
@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "hosting" {
   policy = data.aws_iam_policy_document.bucket_policy.json
 
   dynamic "cors_rule" {
-    for_each = [for origin in var.cors_allowed_origins: {
+    for_each = [for origin in var.cors_allowed_origins : {
       allowed_origin = origin
     }]
 

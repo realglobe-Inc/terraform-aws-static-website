@@ -6,10 +6,10 @@ variable "aws_profile" {
 }
 variable "domain_names" {
   description = "domain names"
-  type = list(string)
+  type        = list(string)
 }
 variable "cloudfront_origin_path" {
-  default = ""
+  default     = ""
   description = "Origin path of CloudFront"
 }
 variable "route53_zone_id" {
@@ -20,16 +20,16 @@ variable "s3_bucket_name" {
 }
 variable "save_access_log" {
   description = "whether save cloudfront access log to S3"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 variable "lambda_function_associations" {
   description = "CloudFront Lambda function associations. key is CloudFront event type and value is lambda function ARN with version"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 variable "cors_allowed_origins" {
   description = "CORS allowed origins"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
