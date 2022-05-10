@@ -32,8 +32,12 @@ resource "aws_s3_bucket" "hosting" {
       max_age_seconds = 3000
     }
   }
+}
 
-  versioning {
-    enabled = true
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.hosting.id
+
+  versioning_configuration {
+    status = "Enabled"
   }
 }
