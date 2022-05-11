@@ -15,7 +15,7 @@ Terraform Registry at https://registry.terraform.io/modules/realglobe-Inc/static
 ```hcl
 module "website" {
   source = "realglobe-Inc/static-website/aws"
-  version = "2.3.1"
+  version = "2.3.2"
   service_name = "your-service-name"
   aws_profile = "aws-profile-name"
   domain_names = list("foo.example.com", "bar.example.com")
