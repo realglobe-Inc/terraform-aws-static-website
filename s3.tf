@@ -1,6 +1,6 @@
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
-    sid = "AllowCloudFront"
+    sid    = "AllowCloudFront"
     effect = "Allow"
     actions = [
       "s3:GetObject"
@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "bucket_policy" {
     ]
 
     principals {
-      type = "AWS"
+      type        = "AWS"
       identifiers = ["arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.origin_access_identity.id}"]
     }
   }
@@ -18,10 +18,18 @@ data "aws_iam_policy_document" "bucket_policy" {
 
 resource "aws_s3_bucket" "hosting" {
   bucket = var.s3_bucket_name
+}
+
+resource "aws_s3_bucket_policy" "hosting" {
+  bucket = var.s3_bucket_name
   policy = data.aws_iam_policy_document.bucket_policy.json
+}
+
+resource "aws_s3_bucket_cors_configuration" "hosting" {
+  bucket = aws_s3_bucket.hosting.id
 
   dynamic "cors_rule" {
-    for_each = [for origin in var.cors_allowed_origins: {
+    for_each = [for origin in var.cors_allowed_origins : {
       allowed_origin = origin
     }]
 
@@ -32,8 +40,12 @@ resource "aws_s3_bucket" "hosting" {
       max_age_seconds = 3000
     }
   }
+}
 
-  versioning {
-    enabled = true
+resource "aws_s3_bucket_versioning" "hosting" {
+  bucket = aws_s3_bucket.hosting.id
+
+  versioning_configuration {
+    status = "Enabled"
   }
 }
