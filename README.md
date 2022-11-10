@@ -18,10 +18,10 @@ module "website" {
   version = "2.3.2"
   service_name = "your-service-name"
   aws_profile = "aws-profile-name"
-  domain_names = list("foo.example.com", "bar.example.com")
+  domain_names = tolist(["foo.example.com", "bar.example.com"])
   route53_zone_id = "ZXXXXXXXXXXXXX"
   s3_bucket_name = "your-s3-web-bucket"
-  cors_allowed_origins = list("https://foo.example.com", "*.example.com")  # optional
+  cors_allowed_origins = tolist(["https://foo.example.com", "*.example.com"])  # optional
   cloudfront_origin_path = "/dev" # optional
   save_access_log = true  # optional
   lambda_function_associations = { "viewer-request": "arn:..." }  # optional
