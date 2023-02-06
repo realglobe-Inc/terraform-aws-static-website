@@ -12,3 +12,8 @@ output "s3_bucket_id" {
   description = "S3 Bucket name"
   value       = aws_s3_bucket.hosting.id
 }
+
+output "cf_distribution_arn" {
+  description = "Cloudfront distribution arn"
+  value       = aws_cloudfront_distribution.web_dist.arn
+}
