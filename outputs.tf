@@ -17,3 +17,8 @@ output "cf_distribution_arn" {
   description = "Cloudfront distribution arn"
   value       = aws_cloudfront_distribution.web_dist.arn
 }
+
+output "cf_distribution_id" {
+  description = "Cloudfront distribution id"
+  value       = aws_cloudfront_distribution.web_dist.id
+}
